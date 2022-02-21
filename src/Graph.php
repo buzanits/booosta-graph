@@ -1,6 +1,9 @@
 <?php
 namespace booosta\graph;
 
+require_once 'phpgraphlib.php';
+require_once 'phpgraphlib_pie.php';
+
 use \booosta\Framework as b;
 b::init_module('graph');
 
@@ -89,7 +92,6 @@ class Barchart extends Graph
   {
     $graph = new \PHPGraphLib($this->width, $this->height, $file);
     #\booosta\debug("new \PHPGraphLib($this->width, $this->height, $file)");
-    #$graph = new \PHPGraphLib($this->width, $this->height, '/tmp/debug');
     $graph->addData($this->data);
     $title = $this->title ?? ' ';
     $graph->setTitle($title);
