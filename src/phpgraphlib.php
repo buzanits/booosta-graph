@@ -925,7 +925,7 @@ class PHPGraphLib {
 
 	protected function displayErrors() 
 	{
-		if (count($this->error) > 0) {
+		if (is_array($this->error) && count($this->error) > 0) {
 			$lineHeight = 12;
 			$errorColor = imagecolorallocate($this->image, 0, 0, 0);
 			$errorBackColor = imagecolorallocate($this->image, 255, 204, 0);
@@ -1182,9 +1182,9 @@ class PHPGraphLib {
         {
             switch (strtolower($currency_type)) {
                 case 'dollar': $this->data_currency = '$'; break;
-                case 'yen': $this->data_currency = '¥'; break;
-                case 'pound': $this->data_currency = '£'; break;
-                case 'lira': $this->data_currency = '£'; break;
+                case 'yen': $this->data_currency = 'ï¿½'; break;
+                case 'pound': $this->data_currency = 'ï¿½'; break;
+                case 'lira': $this->data_currency = 'ï¿½'; break;
                 // Euro doesn't display properly
                 // Franc doesn't display properly
                 default: $this->data_currency = $currency_type; break;
@@ -1265,7 +1265,7 @@ class PHPGraphLib {
 
 	protected function formatDataAsDegrees($input)
 	{
-		return $input . '°';
+		return $input . 'ï¿½';
 	}
 
 	protected function formatDataAsGeneric($input)
