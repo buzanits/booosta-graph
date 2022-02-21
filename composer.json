@@ -17,7 +17,6 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=8.0.0",
-        "booosta/webapp": "dev-master",
-        "elliottb/phpgraphlib": "dev-master"
+        "booosta/webapp": "dev-master"
     }
 }
