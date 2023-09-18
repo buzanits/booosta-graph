@@ -3,7 +3,7 @@ namespace booosta\graph;
 
 class Piechart extends Graph
 {
-  protected $color;
+  protected $color, $colors = [];   // Legend color and data colors
   protected $datavalues;
 
   public function __construct($data = null, $title = null)
@@ -14,6 +14,7 @@ class Piechart extends Graph
   }
 
   public function set_color($color) { $this->color = $color; }
+  public function set_colors($colors) { $this->colors = $colors; }
   public function set_datavalues($datavalues) { $this->datavalues = $datavalues; }
 
   public function set_config($config)
@@ -28,6 +29,7 @@ class Piechart extends Graph
     // create a copy of this object without all the booosta variables
     $obj = new Piechart($this->data, $this->title);
     $obj->set_color($this->color);
+    $obj->set_colors($this->colors);
     $obj->set_datavalues($this->datavalues);
 
     #\booosta\debug($obj);
@@ -36,7 +38,8 @@ class Piechart extends Graph
 
   public function output_image($file = null)
   {
-    $graph = new \PHPGraphLibPie($this->width, $this->height, $file);
+    $graph = new PHPGraphLibPie($this->width, $this->height, $file);
+    $graph->set_colors($this->colors);
     $graph->addData($this->data);
     $title = $this->title === null ? ' ' : $this->title;
     $graph->setTitle($title);
@@ -45,5 +48,13 @@ class Piechart extends Graph
     $graph->setDataValues($this->datavalues);
 
     $graph->createGraph();
+  }
+}
+
+class PHPGraphLibPie extends \PHPGraphLibPie
+{
+  public function set_colors($colors)
+  {
+    $this->pie_avail_colors = array_replace($this->pie_avail_colors, $colors);
   }
 }
